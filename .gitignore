@@ -1,0 +1,30 @@
+# ==========================================
+# SECRETS & GOOGLE AUTH (NEVER COMMIT THESE)
+# ==========================================
+.env
+.env.*
+token.json
+credentials.json
+client_secret*.json
+
+# ==========================================
+# PYTHON ARTIFACTS & VIRTUAL ENVIRONMENTS
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+
+# ==========================================
+# IDE & OS FILES
+# ==========================================
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

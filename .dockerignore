@@ -1,0 +1,28 @@
+# Git and version control
+.git
+.gitignore
+README.md
+
+# Local virtual environments & Python cache
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local secrets (Pass these via Railway Variables instead!)
+.env
+.env.*
+token.json
+credentials.json
+client_secret*.json
+
+# IDE & OS clutter
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Dockerfile
+.dockerignore
