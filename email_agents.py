@@ -145,7 +145,7 @@ def summarize_and_prioritize_node(state: AgentState) -> dict:
     ])
 
     llm = ChatOpenAI(
-        model=model_name,
+        model="gpt-4o-mini",
         temperature=0.2,
         max_retries=2
     )
@@ -198,33 +198,6 @@ def send_whatsapp_node(state: AgentState) -> dict:
             )
             statuses.append(f"Twilio -> {to_num}: {msg.sid}")
             print(f"✅ Sent to {to_num} via Twilio (SID: {msg.sid})")
-
-    elif provider == "meta":
-        access_token = os.getenv("META_ACCESS_TOKEN")
-        phone_id = os.getenv("META_PHONE_NUMBER_ID")
-        to_numbers = [n.strip() for n in os.getenv("META_TO_NUMBERS", "").split(",") if n.strip()]
-        url = f"https://graph.facebook.com/v21.0/{phone_id}/messages"
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json"
-        }
-
-        for to_num in to_numbers:
-            payload = {
-                "messaging_product": "whatsapp",
-                "to": to_num,
-                "type": "text",
-                "text": {"preview_url": False, "body": summary}
-            }
-            res = requests.post(url, headers=headers, json=payload, timeout=15)
-            res.raise_for_status()
-            statuses.append(f"Meta -> {to_num}: {res.status_code}")
-            print(f"✅ Sent to {to_num} via Meta Cloud API")
-
-    else:
-        raise ValueError(f"Unsupported WHATSAPP_PROVIDER: {provider}")
-
-    return {"delivery_status": statuses}
 
 
 # ==========================================
